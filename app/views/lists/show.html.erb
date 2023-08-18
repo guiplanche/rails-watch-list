@@ -1,19 +1,25 @@
 <div class="container">
   <div class="row">
-    <div class="col-xs-12 col-sm-10 col-sm-offset-1">
-      <h1><%= @list.name %></h1>
-
-      <% @list.movies.each do |movie| %>
-        <p><%= movie.title %></p>
-      <% end %>
-
-
-      <%= simple_form_for [@list, @bookmark] do |f| %>
-        <%= f.input :comment %>
-        <%= f.association :movie %>
-        <%= f.submit class: 'btn btn-primary' %>
-      <% end %>
-      <%= link_to "See all lists", lists_path %>
+    <div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('<%= cl_image_path @list.photo.key %>')">
+      <h1 class="light-grey"><%= @list.name %></h1>
     </div>
+
+    <div class="row">
+      <div class="col-xs-12 col-sm-10 col-sm-offset-1">
+
+        <% @list.movies.each do |movie| %>
+          <p><%= movie.title %></p>
+        <% end %>
+
+        <%= simple_form_for [@list, @bookmark] do |f| %>
+          <%= f.input :comment %>
+          <%= f.association :movie %>
+          <%= f.submit class: 'btn btn-primary' %>
+        <% end %>
+
+        <%= link_to "See all lists", lists_path %>
+      </div>
+    </div>
+
   </div>
 </div>
